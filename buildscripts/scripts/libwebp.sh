@@ -26,3 +26,7 @@ cd $build
 
 make -j$cores
 make DESTDIR="$prefix_dir" install
+
+# 정적 링크라 FFmpeg configure 의 링크 시험에 libsharpyuv·libm 이 필요하다(libwebp.pc 는 Requires.private 에만 적혀 있음)
+sed -i 's/^Libs: \(.*\)$/Libs: \1 -lsharpyuv -lm/' "$prefix_dir/lib/pkgconfig/libwebp.pc"
+cat "$prefix_dir/lib/pkgconfig/libwebp.pc"
