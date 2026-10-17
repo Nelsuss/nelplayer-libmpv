@@ -12,6 +12,13 @@ mkdir -p deps && cd deps
 # dav1d
 [ ! -d dav1d ] && git clone --depth 1 --branch $v_dav1d https://code.videolan.org/videolan/dav1d.git dav1d
 
+# libwebp (NELplayer: 애니메이션 WebP 녹화)
+if [ ! -d libwebp ]; then
+	mkdir libwebp
+	$WGET https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-${v_libwebp}.tar.gz -O - | \
+		tar -xz -C libwebp --strip-components=1
+fi
+
 # ffmpeg
 [ ! -d ffmpeg ] && git clone --depth 1 --branch n$v_ffmpeg https://github.com/FFmpeg/FFmpeg.git ffmpeg
 

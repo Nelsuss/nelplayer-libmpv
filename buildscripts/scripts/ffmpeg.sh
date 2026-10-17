@@ -28,10 +28,14 @@ cpuflags=
 	--arch=${ndk_triple%%-*} --cpu=$cpu --pkg-config=pkg-config --nm=llvm-nm \
 	--extra-cflags="-I$prefix_dir/include $cpuflags" --extra-ldflags="-L$prefix_dir/lib" \
 	--enable-{jni,mediacodec,mbedtls,libdav1d,libxml2} --disable-vulkan \
-	--disable-static --enable-shared --enable-{gpl,version3} \
+	--disable-static --enable-shared --enable-version3 --enable-libwebp \
 	--disable-{stripping,doc,programs} \
 	--disable-{muxers,encoders,devices,filters} \
+	--enable-muxer=mp4,mov,matroska,webm,gif,webp,image2 \
+	--enable-encoder=h264_mediacodec,hevc_mediacodec,aac,gif,libwebp_anim,libwebp,png,mjpeg \
+	--enable-filter=palettegen,paletteuse,split,scale,fps,format,null,copy,crop,setpts,trim,aresample,aformat,anull,atrim,asetpts \
 	--disable-v4l2-m2m
+# NELplayer: --enable-gpl 을 뺐다(LGPLv3, mbedtls 때문에 version3 유지). 구간 녹화용 출력 형식·인코더·필터만 켠다.
 
 make -j$cores
 make DESTDIR="$prefix_dir" install

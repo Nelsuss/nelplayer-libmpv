@@ -19,6 +19,7 @@ v_fontconfig=2.18.3
 v_mbedtls=3.6.7
 v_libplacebo=7.360.1
 v_dav1d=1.5.4
+v_libwebp=1.6.0
 v_ffmpeg=9.0.2
 v_mpv=0.41.0
 
@@ -28,7 +29,8 @@ v_mpv=0.41.0
 
 dep_mbedtls=()
 dep_dav1d=()
-dep_ffmpeg=(mbedtls dav1d libxml2)
+dep_libwebp=()
+dep_ffmpeg=(mbedtls dav1d libxml2 libwebp)
 dep_freetype2=()
 dep_fontconfig=(libxml2 freetype)
 dep_fribidi=()
