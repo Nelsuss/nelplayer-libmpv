@@ -16,6 +16,8 @@ android {
     defaultConfig {
         minSdk = 26
         consumerProguardFiles("proguard-rules.pro")
+        // NELplayer: buildscripts/build.sh 의 archs 와 맞춘다
+        ndk { abiFilters += listOf("arm64-v8a") }
         externalNativeBuild {
             cmake {
                 arguments += listOf(
