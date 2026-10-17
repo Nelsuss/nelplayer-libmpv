@@ -29,4 +29,6 @@ make DESTDIR="$prefix_dir" install
 
 # 정적 링크라 FFmpeg configure 의 링크 시험에 libsharpyuv·libm 이 필요하다(libwebp.pc 는 Requires.private 에만 적혀 있음)
 sed -i 's/^Libs: \(.*\)$/Libs: \1 -lsharpyuv -lm/' "$prefix_dir/lib/pkgconfig/libwebp.pc"
+# libwebp_anim 인코더 확인(WebPAnimEncoderOptionsInit)은 libwebpmux 로 링크하므로 같은 처리. 실패해도 configure 는 조용히 끈다
+sed -i 's/^Libs: \(.*\)$/Libs: \1 -lwebp -lsharpyuv -lm/' "$prefix_dir/lib/pkgconfig/libwebpmux.pc" "$prefix_dir/lib/pkgconfig/libwebpdemux.pc"
 cat "$prefix_dir/lib/pkgconfig/libwebp.pc" "$prefix_dir/lib/pkgconfig/libwebpmux.pc"
